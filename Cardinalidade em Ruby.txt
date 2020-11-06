@@ -1,0 +1,19 @@
+def Cliente < ActiveRecord::Base
+   has_many :API
+end
+
+def API < ActiveRecord::Base
+   has_one :Cliente
+   has_one :ExtracaoDoBD
+   has_one :ClasseComDadosDoBanco 
+end
+
+def ExtracaoDoBD< ActiveRecord::Base
+   has_many :API #(Atende a varias Requisicoes)
+   has_one :ClasseComDadosDoBanco #(Coloquei que tem muitos no diagrama, mas acho que esta errado, ai vou colocar a forma que eu achei certo) 
+end
+
+#(Opcional)
+def ClasseComDadosDoBanco < ActiveRecord::Base
+   has_and_belongs_to_many : API #(Atende a varias Requisicoes)
+end
